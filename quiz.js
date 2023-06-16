@@ -6,7 +6,6 @@ const quiz = (connection) => {
     // console.log(token);
     const decoded = jwt.verify(token, "Hello");
     req.user = decoded;
-    console.log(req.user);
 
     let query = "SELECT id, question, options FROM quiz";
 

@@ -12,8 +12,8 @@ const login = (connection) => {
       .then((data) => {
         if (data && bcrypt.compareSync(password, data.password)) {
           const user = {
+            id: data.id,
             username: data.username,
-            password: data.password,
           };
           const token = jwt.sign(user, secretKey);
           res.json({ message: "Login successful", token: token });
