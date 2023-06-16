@@ -23,6 +23,3 @@ out/
 coverage/
 .nyc_output/
 
-# Dependency lock files
-package-lock.json
-yarn.lock
