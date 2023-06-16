@@ -22,9 +22,15 @@ const submit = (connection) => {
       }
     }
 
-    // connection.one("INSERT INTO score {'USER_ID','QUIZ_TOPIC','SCORE'}values('userid','topic','score');
-
-    res.json({ score: score });
+    connection
+      .one(
+        "INSERT INTO score (USER_ID,QUIZ_TOPIC,SCORE) VALUES ($1, $2, $3) RETURNING *",
+        [userid, topic, score]
+      )
+      .then((data) => {
+        console.log(data);
+        res.json({ score: score, data: data });
+      });
   };
 };
 
