@@ -22,6 +22,10 @@ const db = pgp(connectionOptions);
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
 app.post("/api/login", login(db));
 app.post("/api/register", registration(db));
 app.get("/api/quiz", quiz(db));
