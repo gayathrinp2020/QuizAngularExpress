@@ -1,0 +1,28 @@
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm/
+
+# Environment variables file
+.env
+
+# IDE files (example: Visual Studio Code)
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+out/
+
+# Testing and coverage results
+coverage/
+.nyc_output/
+
+# Dependency lock files
+package-lock.json
+yarn.lock
