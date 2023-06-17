@@ -24,7 +24,7 @@ const submit = (connection) => {
 
     connection
       .one(
-        "INSERT INTO score (USER_ID,QUIZ_TOPIC,SCORE) VALUES ($1, $2, $3) RETURNING *",
+        "INSERT INTO score (user_id, quiz_topic, score) VALUES ($1, $2, $3) ON CONFLICT (user_id, quiz_topic) DO UPDATE SET score = $3 RETURNING *",
         [userid, topic, score]
       )
       .then((data) => {
