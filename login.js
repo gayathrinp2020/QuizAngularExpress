@@ -6,16 +6,19 @@ const login = (connection) => {
   return (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
+    console.log(username, password);
 
     connection
       .oneOrNone("SELECT * FROM register WHERE username = $1", [username])
       .then((data) => {
         if (data && bcrypt.compareSync(password, data.password)) {
           const user = {
+            id: data.id,
             username: data.username,
-            password: data.password,
           };
+          console.log(data);
           const token = jwt.sign(user, secretKey);
+          console.log(token);
           res.json({ message: "Login successful", token: token });
         } else {
           res.status(401).json({ error: "Invalid username or password" });
