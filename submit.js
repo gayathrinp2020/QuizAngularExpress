@@ -23,15 +23,12 @@ const submit = (connection) => {
       }
     }
     perscore = (score / submittedAnswers.length) * 100;
-    console.log(perscore);
-
     connection
       .one(
         "INSERT INTO score (user_id, quiz_topic, score) VALUES ($1, $2, $3) ON CONFLICT (user_id, quiz_topic) DO UPDATE SET score = $3 RETURNING *",
         [userid, topic, perscore]
       )
       .then((data) => {
-        console.log(data);
         res.json({ score: score, perscore: perscore, data: data });
       });
   };

@@ -14,6 +14,7 @@ const registration = require("./registration");
 const login = require("./login");
 const quiz = require("./quiz");
 const submit = require("./submit");
+const profile = require("./profile");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -30,6 +31,7 @@ app.post("/api/login", login(db));
 app.post("/api/register", registration(db));
 app.get("/api/quiz", quiz(db));
 app.post("/api/submit", submit(db));
+app.get("/api/profile", profile(db));
 
 // Start the server
 app.listen(3000, () => {

@@ -3,7 +3,6 @@ const quiz = (connection) => {
     const jwt = require("jsonwebtoken");
     const topic = req.query.topic;
     const token = req.headers["authorization"];
-    // console.log(token);
     try {
       const decoded = jwt.verify(token, "Hello");
       req.user = decoded;
@@ -22,7 +21,6 @@ const quiz = (connection) => {
         res.json(response);
       });
     } catch (error) {
-      console.error(error);
       res.status(500).json({ error: "Failed to fetch quiz questions" });
     }
   };
