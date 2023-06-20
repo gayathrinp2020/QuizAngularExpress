@@ -14,6 +14,7 @@ const submit = (connection) => {
     const questions = await connection.any(query);
 
     // Calculate the score
+    let perscore = 0;
     let score = 0;
     for (const submittedAnswer of submittedAnswers) {
       const question = questions.find((q) => q.id === submittedAnswer.id);
@@ -21,15 +22,17 @@ const submit = (connection) => {
         score++;
       }
     }
+    perscore = (score / submittedAnswers.length) * 100;
+    console.log(perscore);
 
     connection
       .one(
         "INSERT INTO score (user_id, quiz_topic, score) VALUES ($1, $2, $3) ON CONFLICT (user_id, quiz_topic) DO UPDATE SET score = $3 RETURNING *",
-        [userid, topic, score]
+        [userid, topic, perscore]
       )
       .then((data) => {
         console.log(data);
-        res.json({ score: score, data: data });
+        res.json({ score: score, perscore: perscore, data: data });
       });
   };
 };
