@@ -7,8 +7,6 @@ const registration = (connection) => {
     // Hash the password synchronously
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    console.log("Hashed password:", hashedPassword);
-    console.log(req.body);
     connection
       .one(
         "INSERT INTO register (username, email, password) VALUES ($1, $2, $3) RETURNING *",
