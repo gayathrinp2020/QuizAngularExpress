@@ -1,4 +1,5 @@
 const reset_password = (connection) => {
+  const bcrypt = require("bcrypt");
   return async (req, res) => {
     const email = req.body.email;
     const newpassword = req.body.newpassword;
